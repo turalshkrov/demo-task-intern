@@ -3,9 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./assets/style.css">
   <title>Demo v1</title>
 </head>
 <body>
-  
+  <header>
+    <nav>
+      <div class="header-left-group">
+        <div class="logo">logo</div>
+        <div class="nav-menu-link">
+          <button>menu 1</button>
+          <button>menu 2</button>
+          <button id="lang">Tr <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="navbar-btn" id="langs">
+            <ul class="langs-list">
+              <li>az</li>
+              <li>tr</li>
+              <li>fr</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="right-button-group">
+        <button class="navbar-btn">
+          Watchlist
+        </button>
+        <button class="navbar-btn">
+          Sign In
+        </button>
+      </div>
+      <div class="mobile-menu-icon">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </nav>
+    <div class="volume-icon">
+      <button class="navbar-btn" id="volume-btn">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+    </div>
+  </header>
+  <main>
+
+  </main>
+  <script src="./src/app.js"></script>
 </body>
 </html>
