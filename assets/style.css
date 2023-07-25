@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  display: block;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 header {
   width: 100%;
   padding: 4rem 5%;
@@ -55,7 +61,6 @@ nav {
   linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-
 }
 .nav-menu-link button{
   text-transform: capitalize;
@@ -122,12 +127,279 @@ nav {
 }
 
 main {
-  background: #1f1f1f
+  background: #1f1f1f;
+  padding: 2rem 0 12rem 5%;
+  min-height: calc(100vh - 350px);
+}
+.movies-container {
+  align-items: baseline;
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  position: relative;
+  height: inherit;
+}
+.scroll-control-btn {
+  position: absolute;
+  z-index: 3;
+  padding: 1rem;
+  border-radius: 50%;
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  top: calc(50% - 18px);
+  transform: translateY(-50%);
+  left: 2rem;
+  cursor: pointer;
+}
+.right-btn {
+  left: unset;
+  right: 5rem;
+}
+.scroll-control-btn i {
+  font-size: 22px;
+  width: 23px;
+}
+.movie-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 20%;
+  margin: 0 1rem;
+  flex: 0 0 22%;
+  cursor: pointer;
+  flex-shrink:0;
+  transition-property: left;
+  transition: .4s;
+}
+.movie-card:hover {
+  margin-bottom: -300px;
+  transform: scale(1.1);
+  background-color: rgba(50, 50, 50, 0.8);
+  border: 1px solid #0FF7F0;
+  border-radius: 10px;
+  z-index: 2;
+  transition: .4s;
+  transition-property: transform;
+}
+.movie-card img {
+  width: 100%;
+}
+.movie-info {
+  color: #FFF;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.movie-title {
+  padding: 1rem;
+}
+.movie-info-more {
+  font-size: 12px;
+  margin-right: 1rem;
+  display: none;
+}
+.movie-card:hover .movie-info-more {
+  display: block;
+}
+.movie-action {
+  text-align: center;
+  margin: 2rem;
+  display: none;
+}
+.movie-action i {
+  margin: .2rem;
+  padding: .75rem;
+  color: #FFF;
+  border-radius: 50%;
+  border: 1px solid #0FF7F0;
+  width: 42px;
+  background-color: rgba(200, 200, 200, 0.3);
+}
+.fa-play {
+  background: linear-gradient(#0FF7F0, #D686FF) !important;
+}
+.movie-card:hover .movie-action {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(50, 50, 50, 0.4);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.modal-active {
+  display: flex;
+}
+.modal-content {
+  position: relative;
+  width: 350px;
+  height: fit-content;
+  padding: 2rem;
+  background: linear-gradient(to bottom, rgba(200, 200, 200, 0.6), rgba(100, 100, 100, 0.4));
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FFF;
+}
+.modal-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(70%, -50%);
+  background-color: rgba(200, 200, 200, 0.6);
+  padding: 1rem;
+  width: 50px;
+  text-align: center  ;
+  border-radius: 50%;
+}
+.modal-close::before {
+  border-radius: 50%;
+}
+.modal-title {
+  text-align: center;
+}
+.modal-title p {
+  margin-top: 2rem;
+  font-weight: 500;
+}
+#sign-in-form {
+  margin: 2rem 0;
+}
+#sign-in-form label, input {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  margin-top: .75rem;
+}
+#sign-in-form input {
+  background-color: #000;
+  color: #FFF;
+  border-radius: 10px;
+  padding: .75rem 2rem;
+  border: none;
+  outline: none;
+  border: 1px solid #0FF7F0;
+}
+#sign-in-form p {
+  text-align: right;
+  font-size: 12px;
+  margin-top: .5rem;
+}
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sign-up-btn {
+  background-color: unset;
+  border: none;
+  color: #FFF;
+  font-size: 12px;
+}
+.sign-in-btn {
+  border-radius: 24px;
+  margin: 0;
+}
+.sign-in-btn::before {
+  border-radius: 24px;
+}
+.modal-footer {
+  margin-top: 1.5rem;
+  font-size: 11px;
+  text-align: center;
+  color: #EEE;
+  font-weight: lighter;
+}
+#watchlist-btn {
+  position: relative;
+}
+.watchlist {
+  width: 255px;
+  position: absolute;
+  right: 220px;
+  top: 120px;
+  padding: .5rem;
+  background-color: rgba(200, 200, 200, 0.3);
+  border-radius: 10PX;
+  border: 1px solid #0FF7F0;
+  height: 220px;
+  display: none;
+}
+.watchlist-container {
+  height: 200px;
+  overflow-y: auto;
+}
+.close-watchlist {
+  position: absolute;
+  z-index: 3;
+  top: -15px;
+  right: -30px;
+  font-size: 10px;
+  padding: 12px;
+  width: 35px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: rgba(200, 200, 200, 0.8);
+}
+.close-watchlist::before {
+  border-radius: 50%;
+}
+.watchlist-active {
+  display: block;
+}
+.watchlist-item {
+  width: 220px;
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000;
+  margin: .5rem 0;
+}
+.watchlist-poster {
+  width: 70px;
+}
+.watchlist-item-title {
+  font-size: 11px;
+  margin-left: .75rem;
+}
+.remove-from-watchlist {
+  font-size: 9px;
+  margin-right: .75rem;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.watchlist-container::-webkit-scrollbar {
+  width: 5px;
+}
+.watchlist-container::-webkit-scrollbar-track {
+  width: 15px;
+  background: #f1f1f1; 
+}
+.watchlist-container::-webkit-scrollbar-thumb {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(#0FF7F0, #D686FF) 
 }
 
 
-
-
+@media only screen and (max-width: 1100px) {
+  .movie-action {
+    margin: .75rem .5rem;
+  }
+  .movie-action i {
+    font-size: 14px;
+    margin: .25rem;
+  }
+}
 
 
 @media only screen and (max-width: 800px) {
@@ -145,7 +417,7 @@ main {
     border-radius: 0;
   }
   .nav-menu-link {
-    z-index: 2;
+    z-index: 4;
     border-radius: 0;
     width: 280px;
     height: 100vh;
@@ -183,5 +455,42 @@ main {
   #volume-btn {
     margin: 0;
     margin-top: 3rem;
+  }
+  .scroll-control-btn {
+    display: none;
+  }
+  .movies-container {
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+  .movie-card {
+    flex: 0 0 40%;
+    margin: .5rem;
+  }
+  .movie-info {
+    flex-direction: column;
+  }
+  .movie-title {
+    padding: .5rem .25rem;
+    font-size: 12px;
+  }
+  .movie-info-more {
+    font-size: 11px;
+  }
+  .movie-action {
+    margin: .75rem .25rem;
+  }
+  .movie-action i {
+    font-size: 12px;
+    padding: 8px;
+    width: 30px;
+    margin: .25rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .modal-content {
+    width: 320px;
+    padding: 2rem 1rem;
   }
 }
