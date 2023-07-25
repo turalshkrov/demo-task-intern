@@ -1,3 +1,4 @@
+// Getting UI elements
 const menuIcon = document.querySelector('.mobile-menu-icon');
 const menuNavbar = document.querySelector('.nav-menu-link');
 const langButton = document.querySelector('#lang');
@@ -15,9 +16,10 @@ const addToWatchlistBtns = [...document.querySelectorAll('.fa-heart')];
 const removeFromWatchlistBtns = [...document.querySelectorAll('.remove-from-watchlist')];
 
 let maxScrollNum = [...movieContainers[0].children].filter(child => child.className === 'movie-card').length - 4; // 4 is the number of movie cards currently displayed on the screen
-let currentScrollNumFisrt = 0;
-let currentScrollNumSecond = 0;
+let currentScrollNumFisrt = 0; // number for controling fisrt slider
+let currentScrollNumSecond = 0; // number for controling second slider
 
+// mobile navbar menu toggle
 const menuClickHandler = () => {
   if (!menuNavbar.classList.contains("menu-active")) {
     menuNavbar.className = "nav-menu-link menu-active";
@@ -26,6 +28,7 @@ const menuClickHandler = () => {
   }
 }
 
+// Languages pop-ups
 const langClickHandler = () => {
   if (!langsList.classList.contains("langs-menu-active")) {
     langsList.className = "navbar-btn langs-menu-active";
@@ -34,13 +37,15 @@ const langClickHandler = () => {
   }
 }
 
+// Slider left clcik
 const leftClickHandler = (e) => {
   let currentScrollNum;
-  const container = e.target.classList.contains('scroll-control-btn')
+  const container = e.target.classList.contains('scroll-control-btn') // Checking clicked button or icon wgich is inside button
   ? e.target.parentElement
   : e.target.parentElement.parentElement;
+
   const movieCards = [...container.children].filter(child => child.className === 'movie-card');
-  if (e.target.id === 'first-left' || e.target.parentElement.id === 'first-left') {
+  if (e.target.id === 'first-left' || e.target.parentElement.id === 'first-left') { // Checking which slider clikced
     if (currentScrollNumFisrt > 0) {
       currentScrollNumFisrt -= 1;
     }
@@ -56,13 +61,15 @@ const leftClickHandler = (e) => {
   });
 }
 
+// Slider right click
 const rightClickHandler = (e) => {
   let currentScrollNum;
-  const container = e.target.classList.contains('scroll-control-btn')
+  const container = e.target.classList.contains('scroll-control-btn') // Checking clicked button or icon wgich is inside button
   ? e.target.parentElement
   : e.target.parentElement.parentElement;
+
   const movieCards = [...container.children].filter(child => child.className === 'movie-card');
-  if (e.target.id === 'first-right' || e.target.parentElement.id === 'first-right') {
+  if (e.target.id === 'first-right' || e.target.parentElement.id === 'first-right') { // Checking which slider clikced
     if (currentScrollNumFisrt < maxScrollNum) {
       currentScrollNumFisrt += 1;
     }
@@ -78,6 +85,7 @@ const rightClickHandler = (e) => {
   });
 }
 
+// Show and hide watchlist and singin modals
 const modalShow = () => {
   signInmodal.classList.add('modal-active');
 }
@@ -94,10 +102,12 @@ const watchlistHide = () => {
   watchlist.classList.remove('watchlist-active');
 }
 
+// Adding movie to Watchlist UI
 const addToWatchlist = (e) => {
   let imgSrc = e.target.parentElement.parentElement.firstElementChild.getAttribute('src');
   let movieTitle = e.target.parentElement.parentElement.children[1].firstElementChild.innerText;
-
+  
+  // Creating movie item and children
   const movieItem = document.createElement('div');
   movieItem.className = 'watchlist-item';
 
@@ -121,11 +131,13 @@ const addToWatchlist = (e) => {
   watchlist.children[1].appendChild(movieItem);
 }
 
+// Removing movie from Watchlist UI
 const removeFromWatchlist = (e) => {
   const movieItem = e.target.parentElement.parentElement;
   movieItem.remove();
 }
 
+// All event listeners called at one function
 const addEventListeners = () => {
   menuIcon.addEventListener('click', menuClickHandler);
   langButton.addEventListener('click', langClickHandler);
